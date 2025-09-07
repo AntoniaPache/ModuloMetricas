@@ -1,0 +1,28 @@
+services:
+  # Servicio de la aplicación Spring Boot
+  - type: web
+    name: api-reserva-vuelos
+    env: java
+    plan: free
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/api-reserva-vuelos-0.0.1-SNAPSHOT.jar --spring.profiles.active=render
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: reserva-vuelos-db
+          property: connectionString
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_JPA_SHOW_SQL
+        value: false
+      - key: SERVER_PORT
+        value: 10000
+
+  # Base de datos PostgreSQL
+  - type: pserv
+    name: reserva-vuelos-db
+    env: postgresql
+    plan: free
+    ipAllowList: []

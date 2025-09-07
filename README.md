@@ -28,6 +28,8 @@ Esta es una API REST desarrollada con Spring Boot para un sistema de reserva de 
 
 ## 🚀 Instalación y Ejecución
 
+### Opción 1: Ejecución Local con Maven
+
 1. **Clonar el repositorio**:
    ```bash
    git clone <url-del-repositorio>
@@ -50,6 +52,34 @@ Esta es una API REST desarrollada con Spring Boot para un sistema de reserva de 
      - JDBC URL: `jdbc:h2:mem:testdb`
      - Usuario: `sa`
      - Contraseña: `password`
+
+### Opción 2: Ejecución con Docker
+
+1. **Construir y ejecutar con Docker Compose**:
+   ```bash
+   docker-compose up --build
+   ```
+
+2. **Acceder a la aplicación**:
+   - API REST: http://localhost:8080
+   - Base de datos PostgreSQL: localhost:5432
+
+3. **Parar los servicios**:
+   ```bash
+   docker-compose down
+   ```
+
+### Opción 3: Solo la aplicación con Docker
+
+1. **Construir la imagen**:
+   ```bash
+   docker build -t api-reserva-vuelos .
+   ```
+
+2. **Ejecutar el contenedor**:
+   ```bash
+   docker run -p 8080:8080 api-reserva-vuelos
+   ```
 
 ## 📚 Endpoints de la API
 
@@ -270,6 +300,68 @@ curl "http://localhost:8080/api/disponibilidad/vuelo/1"
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## ☁️ Despliegue en Render.com
+
+### Despliegue Automático con render.yaml
+
+1. **Conectar repositorio a Render**:
+   - Ve a [Render.com](https://render.com)
+   - Conecta tu repositorio de GitHub
+   - Render detectará automáticamente el archivo `render.yaml`
+
+2. **Configuración automática**:
+   - La aplicación se desplegará automáticamente
+   - Se creará una base de datos PostgreSQL
+   - La aplicación usará el perfil `render`
+
+3. **Variables de entorno**:
+   - `SPRING_PROFILES_ACTIVE=render`
+   - `SPRING_DATASOURCE_URL` (proporcionada automáticamente por Render)
+   - `SPRING_JPA_HIBERNATE_DDL_AUTO=update`
+
+### Despliegue Manual en Render
+
+1. **Crear servicio Web**:
+   - Tipo: Web Service
+   - Entorno: Java
+   - Build Command: `./mvnw clean package -DskipTests`
+   - Start Command: `java -jar target/api-reserva-vuelos-0.0.1-SNAPSHOT.jar --spring.profiles.active=render`
+
+2. **Crear base de datos PostgreSQL**:
+   - Tipo: PostgreSQL
+   - Plan: Free
+
+3. **Configurar variables de entorno**:
+   - `SPRING_PROFILES_ACTIVE=render`
+   - `SPRING_DATASOURCE_URL` (URL de la base de datos)
+   - `SPRING_JPA_HIBERNATE_DDL_AUTO=update`
+
+## 🐳 Archivos Docker
+
+### Dockerfile
+- Imagen base: OpenJDK 17
+- Optimizado para producción
+- Multi-stage build para reducir tamaño
+
+### docker-compose.yml
+- Servicio de aplicación Spring Boot
+- Servicio de base de datos PostgreSQL
+- Configuración de red y volúmenes
+- Health checks para la base de datos
+
+### Archivos de configuración
+- `application-docker.properties`: Configuración para Docker
+- `application-render.properties`: Configuración para Render.com
+- `.dockerignore`: Optimización de la imagen Docker
+
+## 🔧 Configuración de Perfiles
+
+La aplicación soporta múltiples perfiles:
+
+- **default**: Desarrollo local con H2
+- **docker**: Docker con PostgreSQL
+- **render**: Producción en Render.com
 
 ## 📞 Soporte
 
