@@ -28,4 +28,7 @@ public interface DisponibilidadVueloAsientoRepository extends JpaRepository<Disp
     List<DisponibilidadVueloAsiento> findAsientosDisponiblesPorVueloYPrecio(@Param("vueloId") Long vueloId, 
                                                                            @Param("precioMin") Double precioMin, 
                                                                            @Param("precioMax") Double precioMax);
+    
+    @Query("SELECT d FROM DisponibilidadVueloAsiento d WHERE d.vuelo.idVuelo = :vueloId AND d.asiento.asientoId = :asientoId")
+    List<DisponibilidadVueloAsiento> findByVueloIdAndAsientoId(@Param("vueloId") Long vueloId, @Param("asientoId") Long asientoId);
 }
