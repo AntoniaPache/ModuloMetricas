@@ -17,11 +17,13 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
     
     List<Reserva> findByUsuario(Usuario usuario);
     
-    List<Reserva> findByUsuarioId(Long usuarioId);
+    @Query("SELECT r FROM Reserva r WHERE r.usuario.idUsuario = :usuarioId")
+    List<Reserva> findByUsuarioId(@Param("usuarioId") Long usuarioId);
     
     List<Reserva> findByVuelo(Vuelo vuelo);
     
-    List<Reserva> findByVueloId(Long vueloId);
+    @Query("SELECT r FROM Reserva r WHERE r.vuelo.idVuelo = :vueloId")
+    List<Reserva> findByVueloId(@Param("vueloId") Long vueloId);
     
     List<Reserva> findByEstado(String estado);
     
@@ -33,6 +35,6 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
     @Query("SELECT r FROM Reserva r WHERE r.fechaReserva BETWEEN :fechaInicio AND :fechaFin")
     List<Reserva> findByFechaReservaBetween(@Param("fechaInicio") LocalDateTime fechaInicio, @Param("fechaFin") LocalDateTime fechaFin);
     
-    @Query("SELECT r FROM Reserva r WHERE r.vuelo.idVuelo = :vueloId AND r.asiento.idAsiento = :asientoId")
+    @Query("SELECT r FROM Reserva r WHERE r.vuelo.idVuelo = :vueloId AND r.asiento.asientoId = :asientoId")
     List<Reserva> findByVueloIdAndAsientoId(@Param("vueloId") Long vueloId, @Param("asientoId") Long asientoId);
 }

@@ -14,7 +14,8 @@ public interface DisponibilidadVueloAsientoRepository extends JpaRepository<Disp
     
     List<DisponibilidadVueloAsiento> findByVuelo(Vuelo vuelo);
     
-    List<DisponibilidadVueloAsiento> findByVueloId(Long vueloId);
+    @Query("SELECT d FROM DisponibilidadVueloAsiento d WHERE d.vuelo.idVuelo = :vueloId")
+    List<DisponibilidadVueloAsiento> findByVueloId(@Param("vueloId") Long vueloId);
     
     List<DisponibilidadVueloAsiento> findByEstado(String estado);
     

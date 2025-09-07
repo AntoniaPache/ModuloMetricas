@@ -14,9 +14,11 @@ public interface DatosPagoUsuarioRepository extends JpaRepository<DatosPagoUsuar
     
     List<DatosPagoUsuario> findByUsuario(Usuario usuario);
     
-    List<DatosPagoUsuario> findByUsuarioId(Long usuarioId);
+    @Query("SELECT dpu FROM DatosPagoUsuario dpu WHERE dpu.usuario.idUsuario = :usuarioId")
+    List<DatosPagoUsuario> findByUsuarioId(@Param("usuarioId") Long usuarioId);
     
-    List<DatosPagoUsuario> findByUsuarioIdAndActivoTrue(Long usuarioId);
+    @Query("SELECT dpu FROM DatosPagoUsuario dpu WHERE dpu.usuario.idUsuario = :usuarioId AND dpu.activo = true")
+    List<DatosPagoUsuario> findByUsuarioIdAndActivoTrue(@Param("usuarioId") Long usuarioId);
     
     @Query("SELECT dpu FROM DatosPagoUsuario dpu WHERE dpu.usuario.idUsuario = :usuarioId AND dpu.activo = true")
     List<DatosPagoUsuario> findDatosPagoActivosPorUsuario(@Param("usuarioId") Long usuarioId);

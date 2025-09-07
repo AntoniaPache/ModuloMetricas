@@ -15,7 +15,8 @@ public interface AsientoRepository extends JpaRepository<Asiento, Long> {
     
     List<Asiento> findByAvion(Avion avion);
     
-    List<Asiento> findByAvionId(Long avionId);
+    @Query("SELECT a FROM Asiento a WHERE a.avion.idAvion = :avionId")
+    List<Asiento> findByAvionId(@Param("avionId") Long avionId);
     
     Optional<Asiento> findByAvionAndNumeroAsiento(Avion avion, String numeroAsiento);
     
