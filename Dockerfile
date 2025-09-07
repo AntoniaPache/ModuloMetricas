@@ -4,22 +4,23 @@ FROM openjdk:17-jdk-slim
 # Establecer directorio de trabajo
 WORKDIR /app
 
+# Instalar Maven
+RUN apt-get update && \
+    apt-get install -y maven && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Copiar archivos de configuración de Maven
 COPY pom.xml .
-COPY .mvn .mvn
-COPY mvnw .
-
-# Hacer el script mvnw ejecutable
-RUN chmod +x mvnw
 
 # Descargar dependencias (esto se cachea si pom.xml no cambia)
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Copiar código fuente
 COPY src src
 
 # Compilar la aplicación
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Exponer puerto
 EXPOSE 8080
