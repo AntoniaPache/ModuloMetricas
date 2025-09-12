@@ -1,0 +1,114 @@
+.data-table-card {
+  border: 1px solid var(--border-color);
+}
+
+.table-title {
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: var(--dark-gray);
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table-header {
+  background-color: var(--light-gray);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6B7280;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table-row {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.table-row:hover {
+  background-color: #F9FAFB;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-cell {
+  padding: 0.75rem 1rem;
+  color: var(--dark-gray);
+  vertical-align: middle;
+}
+
+.route-badge {
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.continent-badge {
+  background-color: #F3F4F6;
+  color: #6B7280;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.type-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.type-badge.origin {
+  background-color: #EFF6FF;
+  color: #2563EB;
+}
+
+.type-badge.destination {
+  background-color: #F0FDF4;
+  color: #16A34A;
+}
+
+.metric-highlight {
+  font-weight: 500;
+  color: var(--primary-blue);
+}
+
+@media (max-width: 768px) {
+  .table-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .data-table-card {
+    padding: 1rem;
+  }
+  
+  .table-header,
+  .table-cell {
+    padding: 0.5rem;
+  }
+  
+  .data-table {
+    font-size: 0.8rem;
+  }
+}

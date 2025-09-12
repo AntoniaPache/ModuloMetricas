@@ -1,0 +1,38 @@
+.chart-card {
+  border: 1px solid var(--border-color);
+}
+
+.chart-title {
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: var(--dark-gray);
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chart-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Personalización de tooltips */
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.recharts-tooltip-cursor {
+  fill: rgba(80, 123, 216, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .chart-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .chart-card {
+    padding: 1rem;
+  }
+}

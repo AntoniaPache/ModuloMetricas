@@ -1,0 +1,73 @@
+.date-filter {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.filter-label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--dark-gray);
+  white-space: nowrap;
+}
+
+.filter-select {
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--dark-gray);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25rem;
+  min-width: 160px;
+}
+
+.filter-select:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(80, 123, 216, 0.1);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(80, 123, 216, 0.2);
+}
+
+.filter-select option {
+  padding: 0.5rem;
+  background: var(--white);
+  color: var(--dark-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .date-filter {
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-group {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+  
+  .filter-select {
+    min-width: 200px;
+  }
+}

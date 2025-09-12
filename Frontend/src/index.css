@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-blue: #507BD8;
+  --dark-gray: #222222;
+  --white: #FFFFFF;
+  --light-gray: #F8F9FA;
+  --border-color: #E5E7EB;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 12px rgba(80, 123, 216, 0.2);
+}
+
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+  line-height: 1.6;
+}
+
+/* Tipografía */
+h1, .heading-large {
+  font-weight: 700; /* Roboto Bold */
+  font-size: 2rem;
+  color: var(--dark-gray);
+  margin-bottom: 1rem;
+}
+
+h2, .heading-medium {
+  font-weight: 700; /* Roboto Bold */
+  font-size: 1.5rem;
+  color: var(--dark-gray);
+  margin-bottom: 0.75rem;
+}
+
+h3, .heading-small {
+  font-weight: 500; /* Roboto Medium */
+  font-size: 1.25rem;
+  color: var(--dark-gray);
+  margin-bottom: 0.5rem;
+}
+
+.label {
+  font-weight: 500; /* Roboto Medium */
+  font-size: 0.875rem;
+  color: var(--dark-gray);
+  margin-bottom: 0.25rem;
+}
+
+p, .text-regular {
+  font-weight: 400; /* Roboto Regular */
+  font-size: 1rem;
+  color: var(--dark-gray);
+}
+
+.text-muted {
+  color: #6B7280;
+  font-size: 0.875rem;
+}
+
+/* Utilidades */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-cols-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 1200px) {
+  .grid-cols-5 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4,
+  .grid-cols-5 {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+}
