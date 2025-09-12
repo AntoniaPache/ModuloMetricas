@@ -30,13 +30,21 @@ hs_err_pid*
 replay_pid*
 
 # ---- Node / Frontend ----
+# node_modules en cualquier carpeta del front
+Frontend/**/node_modules/
 node_modules/
-Frontend/node_modules/
-dist/
-build/
+
+# builds y caches
+Frontend/build/
+Frontend/dist/
+Frontend/.parcel-cache/
+Frontend/.next/
+Frontend/.turbo/
+
+# reports y coverage
 coverage/
 
-# Env files
+# env files
 .env
 .env.*
 
