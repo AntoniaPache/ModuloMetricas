@@ -1,10 +1,31 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-// API Configuration
-const ANALYTICS_BASE_URL = process.env.REACT_APP_ANALYTICS_BASE_URL || 'https://f5le0z2f39.execute-api.us-east-1.amazonaws.com/dev/analytics';
-const INGEST_BASE_URL = process.env.REACT_APP_INGEST_BASE_URL || 'https://f5le0z2f39.execute-api.us-east-1.amazonaws.com/dev';
-const ANALYTICS_API_KEY = process.env.REACT_APP_ANALYTICS_API_KEY || '3M9yMIH8FCYUF7ATzgg7mIlkFOsRiB46KiExY450';
-const INGEST_API_KEY = process.env.REACT_APP_INGEST_API_KEY || 'FYCbauyxRO6UGZREyB77c9BXie6csqDR3FgtjljM';
+// API Configuration - Environment variables only
+const ANALYTICS_BASE_URL = process.env.REACT_APP_ANALYTICS_BASE_URL;
+const INGEST_BASE_URL = process.env.REACT_APP_INGEST_BASE_URL;
+const ANALYTICS_API_KEY = process.env.REACT_APP_ANALYTICS_API_KEY;
+const INGEST_API_KEY = process.env.REACT_APP_INGEST_API_KEY;
+
+// Debug environment variables in development
+if (process.env.NODE_ENV === 'development') {
+  console.log('Environment variables loaded:', {
+    ANALYTICS_BASE_URL: ANALYTICS_BASE_URL ? '✓ Loaded' : '✗ Missing',
+    INGEST_BASE_URL: INGEST_BASE_URL ? '✓ Loaded' : '✗ Missing',
+    ANALYTICS_API_KEY: ANALYTICS_API_KEY ? '✓ Loaded' : '✗ Missing',
+    INGEST_API_KEY: INGEST_API_KEY ? '✓ Loaded' : '✗ Missing',
+  });
+}
+
+// Validate required environment variables
+if (!ANALYTICS_BASE_URL || !INGEST_BASE_URL || !ANALYTICS_API_KEY || !INGEST_API_KEY) {
+  const missingVars = [];
+  if (!ANALYTICS_BASE_URL) missingVars.push('REACT_APP_ANALYTICS_BASE_URL');
+  if (!INGEST_BASE_URL) missingVars.push('REACT_APP_INGEST_BASE_URL');
+  if (!ANALYTICS_API_KEY) missingVars.push('REACT_APP_ANALYTICS_API_KEY');
+  if (!INGEST_API_KEY) missingVars.push('REACT_APP_INGEST_API_KEY');
+  
+  throw new Error(`Missing required environment variables: ${missingVars.join(', ')}. Please check your .env file and restart the development server.`);
+}
 
 // Create Analytics API instance
 const analyticsApi: AxiosInstance = axios.create({
