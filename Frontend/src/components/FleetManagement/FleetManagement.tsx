@@ -16,7 +16,7 @@ interface FleetManagementProps extends ComponentProps {}
 const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => {
   // Convert selectedPeriod to days for API calls
   const getDaysFromPeriod = (period: string): number => {
-    return 30; // Default to 30 days
+    return parseInt(period, 10) || 30; // Default to 30 days if parsing fails
   };
 
   const days = getDaysFromPeriod(selectedPeriod);

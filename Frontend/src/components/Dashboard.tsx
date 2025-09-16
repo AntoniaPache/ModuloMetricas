@@ -8,7 +8,7 @@ import './Dashboard.css';
 
 const Dashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabKey>('executive');
-  const [selectedPeriod, setSelectedPeriod] = useState('2025-01');
+  const [selectedPeriod, setSelectedPeriod] = useState('30');
 
   const renderTabContent = () => {
     switch (activeTab) {
