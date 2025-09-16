@@ -1,9 +1,9 @@
 import React from 'react';
-import { MetricCard as MetricCardType } from '../data/mockData';
+import { MetricData } from '../../types/dashboard';
 import './MetricCard.css';
 
 interface MetricCardProps {
-  metric: MetricCardType;
+  metric: MetricData;
 }
 
 const MetricCard: React.FC<MetricCardProps> = ({ metric }) => {

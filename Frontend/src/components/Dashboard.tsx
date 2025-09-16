@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TabNavigation, { TabKey } from './TabNavigation';
+import { TabNavigation, TabKey } from './Common';
 import ExecutiveSummary from './ExecutiveSummary';
 import Operations from './Operations';
 import Analytics from './Analytics';
