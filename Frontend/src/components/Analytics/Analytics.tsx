@@ -48,12 +48,12 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
   // Create payment success data from API with proper typing
   const paymentSuccessData: ChartDataPoint[] = [
     {
-      name: "Approved",
+      name: "Aprobado",
       value: paymentSuccess?.data?.approved || 0,
       count: paymentSuccess?.data?.approved || 0
     },
     {
-      name: "Rejected",
+      name: "Rechazado",
       value: paymentSuccess?.data?.rejected || 0,
       count: paymentSuccess?.data?.rejected || 0
     }
@@ -62,7 +62,7 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
   // Create anticipation data from API with proper typing
   const anticipationData: ChartDataPoint[] = [
     {
-      name: "Average Anticipation",
+      name: "Anticipación Promedio",
       value: anticipation?.data?.avg_anticipation_days || 0,
       days: anticipation?.data?.avg_anticipation_days || 0
     }
@@ -70,8 +70,8 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
   
   // Create columns for user origins table with proper typing
   const userOriginsColumns: TableColumn[] = [
-    { key: 'country', title: 'Country' },
-    { key: 'users', title: 'Users', render: (value: number) => value.toLocaleString() }
+    { key: 'country', title: 'País' },
+    { key: 'users', title: 'Usuarios', render: (value: number) => value.toLocaleString() }
   ];
 
   // Show loading state with skeleton
@@ -80,13 +80,13 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
       <div className="tab-content">
         {/* User Activity Analysis Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">User Behavior Analysis</h2>
+          <h2 className="section-title">Análisis de Comportamiento del Usuario</h2>
           <ChartCardSkeleton height={300} type="bar" />
         </section>
 
         {/* Payment Success Analysis Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Payment Success Analysis</h2>
+          <h2 className="section-title">Análisis de Éxito de Pago</h2>
           <div className="grid grid-cols-1">
             <ChartCardSkeleton height={300} type="pie" />
           </div>
@@ -94,7 +94,7 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
 
         {/* User Origins Analysis Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">User Origins Analysis</h2>
+          <h2 className="section-title">Análisis de Orígenes del Usuario</h2>
           <div className="grid grid-cols-2">
             <ChartCardSkeleton height={300} type="pie" />
             <DataTableSkeleton rows={8} columns={2} />
@@ -103,7 +103,7 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
 
         {/* Anticipation Analysis Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Booking Anticipation Analysis</h2>
+          <h2 className="section-title">Análisis de Anticipación de Reserva</h2>
           <div className="grid grid-cols-1">
             <ChartCardSkeleton height={300} type="bar" />
           </div>
@@ -127,9 +127,9 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
     <div className="tab-content">
       {/* User Activity Analysis */}
       <section className="metrics-section">
-        <h2 className="section-title">User Behavior Analysis</h2>
+        <h2 className="section-title">Análisis de Comportamiento del Usuario</h2>
         <ChartCard 
-          title="Booking Activity by Hour (UTC)"
+          title="Actividad de Reserva por Hora (UTC)"
           data={bookingHoursData}
           type="bar"
           height={300}
@@ -140,10 +140,10 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
 
       {/* Payment Success Analysis */}
       <section className="metrics-section">
-        <h2 className="section-title">Payment Success Analysis</h2>
+        <h2 className="section-title">Análisis de Éxito de Pago</h2>
         <div className="grid grid-cols-1">
           <ChartCard 
-            title="Payment Success Rate"
+            title="Tasa de Éxito de Pago"
             data={paymentSuccessData}
             type="pie"
             height={300}
@@ -154,17 +154,17 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
 
       {/* User Origins Analysis */}
       <section className="metrics-section">
-        <h2 className="section-title">User Origins Analysis</h2>
+        <h2 className="section-title">Análisis de Orígenes del Usuario</h2>
         <div className="grid grid-cols-2">
           <ChartCard 
-            title="User Origins by Country"
+            title="Orígenes del Usuario por País"
             data={userOriginsData}
             type="pie"
             height={300}
             valueKey="value"
           />
           <DataTable 
-            title="Top User Origins"
+            title="Top Orígenes del Usuario"
             data={userOriginsData}
             columns={userOriginsColumns}
             maxRows={8}
@@ -174,10 +174,10 @@ const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
 
       {/* Anticipation Analysis */}
       <section className="metrics-section">
-        <h2 className="section-title">Booking Anticipation Analysis</h2>
+        <h2 className="section-title">Análisis de Anticipación de Reserva</h2>
         <div className="grid grid-cols-1">
           <ChartCard 
-            title="Average Booking Anticipation (Days)"
+            title="Anticipación Promedio de Reserva (Días)"
             data={anticipationData}
             type="bar"
             height={300}
