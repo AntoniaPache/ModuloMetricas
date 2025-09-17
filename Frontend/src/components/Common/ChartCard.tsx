@@ -18,12 +18,12 @@ import {
   AreaChart,
   Area
 } from 'recharts';
-import { ChartData } from '../data/mockData';
+import { ChartDataPoint } from '../../types/dashboard';
 import './ChartCard.css';
 
 interface ChartCardProps {
   title: string;
-  data: ChartData[];
+  data: ChartDataPoint[];
   type: 'bar' | 'line' | 'pie' | 'funnel' | 'area';
   height?: number;
   valueKey?: string;

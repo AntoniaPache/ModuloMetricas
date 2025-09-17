@@ -46,11 +46,13 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
   selectedPeriod, 
   onPeriodChange 
 }) => {
-  // Opciones del filtro de mes
+  // Opciones del filtro de período (días)
   const filterOptions: FilterOption[] = [
-    { value: '2025-01', label: 'Enero 2025' },
-    { value: '2025-02', label: 'Febrero 2025' },
-    { value: '2025-03', label: 'Marzo 2025' }
+    { value: '7', label: 'Últimos 7 días' },
+    { value: '30', label: 'Últimos 30 días' },
+    { value: '90', label: 'Últimos 90 días' },
+    { value: '180', label: 'Últimos 6 meses' },
+    { value: '365', label: 'Último año' }
   ];
 
   return (

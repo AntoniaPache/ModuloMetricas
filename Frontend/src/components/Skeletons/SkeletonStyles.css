@@ -1,0 +1,320 @@
+/* Skeleton Loading Styles */
+
+/* Base skeleton animation */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton-base {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Metric Card Skeleton */
+.metric-card-skeleton {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-change {
+  width: 40px;
+  height: 14px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-value {
+  width: 80%;
+  height: 28px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-unit {
+  width: 30%;
+  height: 14px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Chart Card Skeleton */
+.chart-card-skeleton {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-chart-title {
+  width: 50%;
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.skeleton-chart-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Bar Chart Skeleton */
+.chart-skeleton-bar .skeleton-chart-bars {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  height: 200px;
+  width: 100%;
+}
+
+.chart-skeleton-bar .skeleton-chart-bars::before {
+  content: '';
+  width: 20px;
+  height: 60%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px 4px 0 0;
+}
+
+.chart-skeleton-bar .skeleton-chart-bars::after {
+  content: '';
+  width: 20px;
+  height: 80%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px 4px 0 0;
+  margin-left: 8px;
+}
+
+/* Pie Chart Skeleton */
+.chart-skeleton-pie .skeleton-chart-bars {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  margin-bottom: 20px;
+}
+
+/* Line Chart Skeleton */
+.chart-skeleton-line .skeleton-chart-bars {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  position: relative;
+}
+
+.chart-skeleton-line .skeleton-chart-bars::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #d1d5db;
+  transform: translateY(-50%);
+}
+
+/* Area Chart Skeleton */
+.chart-skeleton-area .skeleton-chart-bars {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  clip-path: polygon(0 100%, 0 50%, 50% 30%, 100% 40%, 100% 100%);
+}
+
+.skeleton-chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.skeleton-chart-legend::before {
+  content: '';
+  width: 60px;
+  height: 12px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-chart-legend::after {
+  content: '';
+  width: 60px;
+  height: 12px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Data Table Skeleton */
+.data-table-skeleton {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.skeleton-table-title {
+  width: 40%;
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.skeleton-table-header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.skeleton-table-header-cell {
+  flex: 1;
+  height: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-table-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-table-row {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.skeleton-table-cell {
+  flex: 1;
+  height: 14px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Section Skeleton */
+.section-skeleton {
+  margin-bottom: 32px;
+}
+
+.skeleton-section-title {
+  width: 30%;
+  height: 24px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+/* Grid Skeleton */
+.skeleton-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.skeleton-grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.skeleton-grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.skeleton-grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.skeleton-grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.skeleton-grid-cols-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .skeleton-grid-cols-2,
+  .skeleton-grid-cols-3,
+  .skeleton-grid-cols-4,
+  .skeleton-grid-cols-5 {
+    grid-template-columns: 1fr;
+  }
+  
+  .skeleton-table-header,
+  .skeleton-table-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .skeleton-table-header-cell,
+  .skeleton-table-cell {
+    width: 100%;
+  }
+}

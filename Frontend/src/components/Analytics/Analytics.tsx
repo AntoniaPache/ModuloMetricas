@@ -1,0 +1,193 @@
+import React from 'react';
+import { ChartCard, DataTable } from '../Common';
+import { ChartCardSkeleton, DataTableSkeleton } from '../Skeletons';
+import { useAnalytics } from '../../hooks/useAnalytics';
+import { 
+  ComponentProps, 
+  ChartDataPoint,
+  TableColumn
+} from '../../types/dashboard';
+import '../../components/LoadingStates.css';
+
+interface AnalyticsProps extends ComponentProps {}
+
+const Analytics: React.FC<AnalyticsProps> = ({ selectedPeriod }) => {
+  // Convert selectedPeriod to days for API calls
+  const getDaysFromPeriod = (period: string): number => {
+    return parseInt(period, 10) || 30; // Default to 30 days if parsing fails
+  };
+
+  const days = getDaysFromPeriod(selectedPeriod);
+  
+  // Use TanStack Query hooks for real-time data
+  const {
+    bookingHours,
+    userOrigins,
+    paymentSuccess,
+    anticipation,
+    isLoading: apiLoading,
+    isError: apiError
+  } = useAnalytics(days);
+
+  // Create booking hours data from API with proper typing
+  const bookingHoursData: ChartDataPoint[] = bookingHours?.data?.histogram?.map((item: { hour_utc: number; count: number }) => ({
+    name: `${item.hour_utc}:00`,
+    value: item.count,
+    hour: item.hour_utc,
+    count: item.count
+  })) || [];
+
+  // Create user origins data from API with proper typing
+  const userOriginsData: ChartDataPoint[] = userOrigins?.data?.user_origins?.map((origin: { country: string; users: number }) => ({
+    name: origin.country,
+    value: origin.users,
+    country: origin.country,
+    users: origin.users
+  })) || [];
+
+  // Create payment success data from API with proper typing
+  const paymentSuccessData: ChartDataPoint[] = [
+    {
+      name: "Approved",
+      value: paymentSuccess?.data?.approved || 0,
+      count: paymentSuccess?.data?.approved || 0
+    },
+    {
+      name: "Rejected",
+      value: paymentSuccess?.data?.rejected || 0,
+      count: paymentSuccess?.data?.rejected || 0
+    }
+  ];
+
+  // Create anticipation data from API with proper typing
+  const anticipationData: ChartDataPoint[] = [
+    {
+      name: "Average Anticipation",
+      value: anticipation?.data?.avg_anticipation_days || 0,
+      days: anticipation?.data?.avg_anticipation_days || 0
+    }
+  ];
+  
+  // Create columns for user origins table with proper typing
+  const userOriginsColumns: TableColumn[] = [
+    { key: 'country', title: 'Country' },
+    { key: 'users', title: 'Users', render: (value: number) => value.toLocaleString() }
+  ];
+
+  // Show loading state with skeleton
+  if (apiLoading) {
+    return (
+      <div className="tab-content">
+        {/* User Activity Analysis Skeleton */}
+        <section className="metrics-section">
+          <h2 className="section-title">User Behavior Analysis</h2>
+          <ChartCardSkeleton height={300} type="bar" />
+        </section>
+
+        {/* Payment Success Analysis Skeleton */}
+        <section className="metrics-section">
+          <h2 className="section-title">Payment Success Analysis</h2>
+          <div className="grid grid-cols-1">
+            <ChartCardSkeleton height={300} type="pie" />
+          </div>
+        </section>
+
+        {/* User Origins Analysis Skeleton */}
+        <section className="metrics-section">
+          <h2 className="section-title">User Origins Analysis</h2>
+          <div className="grid grid-cols-2">
+            <ChartCardSkeleton height={300} type="pie" />
+            <DataTableSkeleton rows={8} columns={2} />
+          </div>
+        </section>
+
+        {/* Anticipation Analysis Skeleton */}
+        <section className="metrics-section">
+          <h2 className="section-title">Booking Anticipation Analysis</h2>
+          <div className="grid grid-cols-1">
+            <ChartCardSkeleton height={300} type="bar" />
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (apiError) {
+    return (
+      <div className="tab-content">
+        <div className="error-container">
+          <p>Error loading analytics data. Please try again later.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="tab-content">
+      {/* User Activity Analysis */}
+      <section className="metrics-section">
+        <h2 className="section-title">User Behavior Analysis</h2>
+        <ChartCard 
+          title="Booking Activity by Hour (UTC)"
+          data={bookingHoursData}
+          type="bar"
+          height={300}
+          valueKey="value"
+          color="#34D399"
+        />
+      </section>
+
+      {/* Payment Success Analysis */}
+      <section className="metrics-section">
+        <h2 className="section-title">Payment Success Analysis</h2>
+        <div className="grid grid-cols-1">
+          <ChartCard 
+            title="Payment Success Rate"
+            data={paymentSuccessData}
+            type="pie"
+            height={300}
+            valueKey="value"
+          />
+        </div>
+      </section>
+
+      {/* User Origins Analysis */}
+      <section className="metrics-section">
+        <h2 className="section-title">User Origins Analysis</h2>
+        <div className="grid grid-cols-2">
+          <ChartCard 
+            title="User Origins by Country"
+            data={userOriginsData}
+            type="pie"
+            height={300}
+            valueKey="value"
+          />
+          <DataTable 
+            title="Top User Origins"
+            data={userOriginsData}
+            columns={userOriginsColumns}
+            maxRows={8}
+          />
+        </div>
+      </section>
+
+      {/* Anticipation Analysis */}
+      <section className="metrics-section">
+        <h2 className="section-title">Booking Anticipation Analysis</h2>
+        <div className="grid grid-cols-1">
+          <ChartCard 
+            title="Average Booking Anticipation (Days)"
+            data={anticipationData}
+            type="bar"
+            height={300}
+            valueKey="value"
+            color="#F59E0B"
+          />
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Analytics;

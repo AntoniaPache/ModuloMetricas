@@ -1,17 +1,11 @@
 import React from 'react';
-import { RouteData, CountryData } from '../data/mockData';
+import { TableData, TableColumn } from '../../types/dashboard';
 import './DataTable.css';
-
-interface Column {
-  key: string;
-  title: string;
-  render?: (value: any, record: any) => React.ReactNode;
-}
 
 interface DataTableProps {
   title: string;
-  data: RouteData[] | CountryData[] | any[];
-  columns: Column[];
+  data: TableData[];
+  columns: TableColumn[];
   maxRows?: number;
 }
 
@@ -48,7 +42,7 @@ const DataTable: React.FC<DataTableProps> = ({ title, data, columns, maxRows = 8
                 {columns.map((column) => (
                   <td key={column.key} className="table-cell">
                     {column.render 
-                      ? column.render(row[column.key], row)
+                      ? column.render(row[column.key])
                       : formatValue(row[column.key])
                     }
                   </td>
