@@ -35,28 +35,28 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
   // Transform API data to match component expectations with proper typing
   const realTimeMetrics: MetricData[] = [
     {
-      title: "Conversion Rate",
+      title: "Tasa de Conversión",
       value: funnelData?.data?.conversion?.search_to_pay?.toFixed(1) || "0.0",
       unit: "%",
       change: 0 // This would come from comparison with previous period
     },
     {
-      title: "Average Booking Value",
+      title: "Valor Promedio de Reserva",
       value: `$${averageFare?.data?.avg_fare?.toFixed(0) || "0"}`,
       change: 0
     },
     {
-      title: "Monthly Revenue",
+      title: "Ingresos Mensuales",
       value: `$${monthlyRevenue?.data?.monthly?.reduce((sum: number, month: { revenue: number }) => sum + month.revenue, 0)?.toFixed(1) || "0"}M`,
       change: 0
     },
     {
-      title: "Lifetime Value",
+      title: "Valor de Vida del Cliente",
       value: `$${lifetimeValue?.data?.ltv?.[0]?.total_spend?.toFixed(0) || "0"}`,
       change: 0
     },
     {
-      title: "Revenue per User",
+      title: "Ingresos por Usuario",
       value: `$${revenuePerUser?.data?.revenue_per_user?.[0]?.revenue?.toFixed(0) || "0"}`,
       change: 0
     }
@@ -65,13 +65,13 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
   // Create operational metrics from API data with proper typing
   const operationalMetrics: MetricData[] = [
     {
-      title: "Payment Success Rate",
+      title: "Tasa de Éxito de Pago",
       value: paymentSuccess?.data?.success_rate_percent?.toFixed(1) || "0.0",
       unit: "%",
       change: 0
     },
     {
-      title: "Average Anticipation",
+      title: "Anticipación Promedio",
       value: `${anticipation?.data?.avg_anticipation_days?.toFixed(0) || "0"}`,
       unit: "days",
       change: 0
@@ -89,28 +89,28 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
   // Create user engagement metrics from API data with proper typing
   const engagementMetrics: MetricData[] = [
     {
-      title: "Total Searches",
+      title: "Total de Búsquedas",
       value: funnelData?.data?.searches?.toLocaleString() || "0",
       change: 0
     },
     {
-      title: "Total Reservations",
+      title: "Total de Reservas",
       value: funnelData?.data?.reservations?.toLocaleString() || "0",
       change: 0
     },
     {
-      title: "Total Payments",
+      title: "Total de Pagos",
       value: funnelData?.data?.payments?.toLocaleString() || "0",
       change: 0
     },
     {
-      title: "Search to Reserve",
+      title: "Búsqueda a Reserva",
       value: funnelData?.data?.conversion?.search_to_reserve?.toFixed(1) || "0.0",
       unit: "%",
       change: 0
     },
     {
-      title: "Reserve to Pay",
+      title: "Reserva a Pago",
       value: funnelData?.data?.conversion?.reserve_to_pay?.toFixed(1) || "0.0",
       unit: "%",
       change: 0
@@ -123,7 +123,7 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
       <div className="tab-content">
         {/* Financial Performance Metrics Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Financial Performance of Booking System</h2>
+          <h2 className="section-title">Rendimiento Financiero del Sistema de Reservas</h2>
           <div className="grid grid-cols-5">
             <MetricCardSkeleton count={5} />
           </div>
@@ -131,7 +131,7 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
 
         {/* Operational Excellence Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Operational Excellence</h2>
+          <h2 className="section-title">Excelencia Operacional</h2>
           <div className="grid grid-cols-2">
             <MetricCardSkeleton count={2} />
           </div>
@@ -146,7 +146,7 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
 
         {/* User Engagement Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">User Experience and Retention</h2>
+          <h2 className="section-title">Experiencia del Usuario y Retención</h2>
           <div className="grid grid-cols-5">
             <MetricCardSkeleton count={5} />
           </div>
@@ -170,7 +170,7 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
     <div className="tab-content">
       {/* Financial Performance Metrics */}
       <section className="metrics-section">
-        <h2 className="section-title">Financial Performance of Booking System</h2>
+        <h2 className="section-title">Rendimiento Financiero del Sistema de Reservas</h2>
         <div className="grid grid-cols-5">
           {realTimeMetrics.map((metric, index) => (
             <MetricCard key={`revenue-${selectedPeriod}-${index}`} metric={metric} />
@@ -180,7 +180,7 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
 
       {/* Operational Excellence */}
       <section className="metrics-section">
-        <h2 className="section-title">Operational Excellence</h2>
+        <h2 className="section-title">Excelencia Operacional</h2>
         <div className="grid grid-cols-2">
           {operationalMetrics.map((metric, index) => (
             <MetricCard key={`operational-${selectedPeriod}-${index}`} metric={metric} />
@@ -192,7 +192,7 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
       <section className="metrics-section">
         <div className="grid grid-cols-1">
           <ChartCard 
-            title="Monthly Revenue Trend ($M)"
+            title="Tendencia de Ingresos Mensuales ($M)"
             data={revenueTrendData}
             type="line"
             height={400}
@@ -204,7 +204,7 @@ const ExecutiveSummary: React.FC<ExecutiveSummaryProps> = ({ selectedPeriod }) =
 
       {/* User Engagement and Retention */}
       <section className="metrics-section">
-        <h2 className="section-title">User Experience and Retention</h2>
+        <h2 className="section-title">Experiencia del Usuario y Retención</h2>
         <div className="grid grid-cols-5">
           {engagementMetrics.map((metric, index) => (
             <MetricCard key={`engagement-${selectedPeriod}-${index}`} metric={metric} />

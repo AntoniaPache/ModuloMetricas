@@ -27,24 +27,24 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
   // Create fleet metrics from API data with proper typing
   const fleetMetrics: MetricData[] = [
     {
-      title: "Total Airlines",
+      title: "Total de Aerolíneas",
       value: popularAirlinesData?.popular_airlines?.length?.toString() || "0",
       change: 0
     },
     {
-      title: "Total Bookings",
+      title: "Total de Reservas",
       value: popularAirlinesData?.popular_airlines?.reduce((sum: number, airline: { count: number }) => sum + airline.count, 0)?.toLocaleString() || "0",
       change: 0
     },
     {
-      title: "Average Price",
+      title: "Precio Promedio",
       value: `$${popularAirlinesData?.popular_airlines?.length ? 
         (popularAirlinesData.popular_airlines.reduce((sum: number, airline: { avg_price: number }) => sum + airline.avg_price, 0) / popularAirlinesData.popular_airlines.length).toFixed(0) : 
         "0"}`,
       change: 0
     },
     {
-      title: "Top Airline",
+      title: "Aerolínea Principal",
       value: popularAirlinesData?.popular_airlines?.[0]?.airlineCode || "N/A",
       change: 0
     }
@@ -68,10 +68,10 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
 
   // Create columns for airline details table with proper typing
   const airlineColumns: TableColumn[] = [
-    { key: 'airlineCode', title: 'Airline Code' },
-    { key: 'bookings', title: 'Bookings', render: (value: number) => value.toLocaleString() },
-    { key: 'avgPrice', title: 'Avg Price', render: (value: number) => `$${value.toFixed(0)}` },
-    { key: 'revenue', title: 'Revenue', render: (value: number) => `$${value.toLocaleString()}` }
+    { key: 'airlineCode', title: 'Código de Aerolínea' },
+    { key: 'bookings', title: 'Reservas', render: (value: number) => value.toLocaleString() },
+    { key: 'avgPrice', title: 'Precio Promedio', render: (value: number) => `$${value.toFixed(0)}` },
+    { key: 'revenue', title: 'Ingresos', render: (value: number) => `$${value.toLocaleString()}` }
   ];
 
   // Show loading state with skeleton
@@ -80,7 +80,7 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
       <div className="tab-content">
         {/* Fleet Performance Metrics Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Fleet Performance</h2>
+          <h2 className="section-title">Rendimiento de la Flota</h2>
           <div className="grid grid-cols-4">
             <MetricCardSkeleton count={4} />
           </div>
@@ -88,7 +88,7 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
 
         {/* Popular Airlines Distribution Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Popular Airlines Distribution</h2>
+          <h2 className="section-title">Distribución de Aerolíneas Populares</h2>
           <div className="grid grid-cols-1">
             <ChartCardSkeleton height={400} type="pie" />
           </div>
@@ -96,7 +96,7 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
 
         {/* Airline Performance Details Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Airline Performance Details</h2>
+          <h2 className="section-title">Detalles de Rendimiento de Aerolíneas</h2>
           <div className="grid grid-cols-1">
             <DataTableSkeleton rows={10} columns={4} />
           </div>
@@ -104,7 +104,7 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
 
         {/* Average Price Analysis Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Average Price Analysis</h2>
+          <h2 className="section-title">Análisis de Precios Promedio</h2>
           <div className="grid grid-cols-1">
             <ChartCardSkeleton height={300} type="bar" />
           </div>
@@ -128,7 +128,7 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
     <div className="tab-content">
       {/* Fleet Performance Metrics */}
       <section className="metrics-section">
-        <h2 className="section-title">Fleet Performance</h2>
+        <h2 className="section-title">Rendimiento de la Flota</h2>
         <div className="grid grid-cols-4">
           {fleetMetrics.map((metric, index) => (
             <MetricCard key={`fleet-metric-${index}`} metric={metric} />
@@ -138,10 +138,10 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
 
       {/* Popular Airlines Distribution */}
       <section className="metrics-section">
-        <h2 className="section-title">Popular Airlines Distribution</h2>
+        <h2 className="section-title">Distribución de Aerolíneas Populares</h2>
         <div className="grid grid-cols-1">
           <ChartCard 
-            title="Airlines by Booking Volume"
+            title="Aerolíneas por Volumen de Reservas"
             data={popularAirlinesChartData}
             type="pie"
             height={400}
@@ -152,10 +152,10 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
 
       {/* Airline Performance Details */}
       <section className="metrics-section">
-        <h2 className="section-title">Airline Performance Details</h2>
+        <h2 className="section-title">Detalles de Rendimiento de Aerolíneas</h2>
         <div className="grid grid-cols-1">
           <DataTable 
-            title="Airline Performance Metrics"
+            title="Métricas de Rendimiento de Aerolíneas"
             data={airlineDetailsData}
             columns={airlineColumns}
             maxRows={10}
@@ -165,10 +165,10 @@ const FleetManagement: React.FC<FleetManagementProps> = ({ selectedPeriod }) => 
 
       {/* Average Price Analysis */}
       <section className="metrics-section">
-        <h2 className="section-title">Average Price Analysis</h2>
+        <h2 className="section-title">Análisis de Precios Promedio</h2>
         <div className="grid grid-cols-1">
           <ChartCard 
-            title="Average Price by Airline"
+            title="Precios Promedio por Aerolínea"
             data={popularAirlinesChartData}
             type="bar"
             height={300}

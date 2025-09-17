@@ -33,19 +33,19 @@ const Operations: React.FC<OperationsProps> = ({ selectedPeriod }) => {
   // Transform API data to match component expectations with proper typing
   const realTimeOperationalMetrics: MetricData[] = [
     {
-      title: "Search → Booking",
+      title: "Búsqueda → Reserva",
       value: funnelData?.data?.conversion?.search_to_reserve?.toFixed(1) || "0.0",
       unit: "%",
       change: 0
     },
     {
-      title: "Payment Success Rate",
+      title: "Tasa de Éxito de Pago",
       value: paymentSuccess?.data?.success_rate_percent?.toFixed(1) || "0.0",
       unit: "%",
       change: 0
     },
     {
-      title: "Booking Time",
+      title: "Tiempo de Reserva",
       value: timeToComplete?.data?.avg_minutes?.search_to_reserve?.toFixed(1) || "0.0",
       unit: "min",
       change: 0
@@ -54,19 +54,19 @@ const Operations: React.FC<OperationsProps> = ({ selectedPeriod }) => {
 
   const realTimeFlightMetrics: MetricData[] = [
     {
-      title: "Cancellation Rate",
+      title: "Tasa de Cancelación",
       value: cancellationRate?.data?.cancellation_rate_percent?.toFixed(1) || "0.0",
       unit: "%",
       change: 0
     },
     {
-      title: "Payment to Reserve Time",
+      title: "Tiempo de Pago a Reserva",
       value: timeToComplete?.data?.avg_minutes?.reserve_to_pay?.toFixed(1) || "0.0",
       unit: "min",
       change: 0
     },
     {
-      title: "Total Booking Time",
+      title: "Tiempo Total de Reserva",
       value: timeToComplete?.data?.avg_minutes?.search_to_pay?.toFixed(1) || "0.0",
       unit: "min",
       change: 0
@@ -94,7 +94,7 @@ const Operations: React.FC<OperationsProps> = ({ selectedPeriod }) => {
       <div className="tab-content">
         {/* Booking System Performance Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Booking System Performance</h2>
+          <h2 className="section-title">Rendimiento del Sistema de Reservas</h2>
           <div className="grid grid-cols-3">
             <MetricCardSkeleton count={3} />
           </div>
@@ -102,7 +102,7 @@ const Operations: React.FC<OperationsProps> = ({ selectedPeriod }) => {
 
         {/* Flight Operations Skeleton */}
         <section className="metrics-section">
-          <h2 className="section-title">Flight Operations and Availability</h2>
+          <h2 className="section-title">Operaciones de Vuelo y Disponibilidad</h2>
           <div className="grid grid-cols-3">
             <MetricCardSkeleton count={3} />
           </div>
@@ -138,7 +138,7 @@ const Operations: React.FC<OperationsProps> = ({ selectedPeriod }) => {
     <div className="tab-content">
       {/* Booking System Performance */}
       <section className="metrics-section">
-        <h2 className="section-title">Booking System Performance</h2>
+        <h2 className="section-title">Rendimiento del Sistema de Reservas</h2>
         <div className="grid grid-cols-3">
           {realTimeOperationalMetrics.map((metric, index) => (
             <MetricCard key={`operational-${index}`} metric={metric} />
@@ -148,7 +148,7 @@ const Operations: React.FC<OperationsProps> = ({ selectedPeriod }) => {
 
       {/* Flight Operations and Availability */}
       <section className="metrics-section">
-        <h2 className="section-title">Flight Operations and Availability</h2>
+        <h2 className="section-title">Operaciones de Vuelo y Disponibilidad</h2>
         <div className="grid grid-cols-3">
           {realTimeFlightMetrics.map((metric, index) => (
             <MetricCard key={`flight-${index}`} metric={metric} />
@@ -160,7 +160,7 @@ const Operations: React.FC<OperationsProps> = ({ selectedPeriod }) => {
       <section className="metrics-section">
         <div className="grid grid-cols-1">
           <ChartCard 
-            title="Popular Airlines Distribution"
+            title="Distribución de Aerolíneas Populares"
             data={popularAirlinesData}
             type="pie"
             height={350}
@@ -172,7 +172,7 @@ const Operations: React.FC<OperationsProps> = ({ selectedPeriod }) => {
       {/* Cancellation Analysis */}
       <section className="metrics-section">
         <ChartCard 
-          title="Cancellation Rate Analysis"
+          title="Análisis de Tasa de Cancelación"
           data={cancellationData}
           type="bar"
           height={300}
